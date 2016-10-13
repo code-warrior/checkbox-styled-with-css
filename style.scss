@@ -1,0 +1,62 @@
+$width--checkbox-container  : 24px;                              // Increase this number and the entire box and check mark will scale proportionally
+$height--checkbox-container : $width--checkbox-container;
+$width--check               : .36 * $width--checkbox-container;  // The width of the check is 36% of the container
+$height--check              : .20 * $height--checkbox-container; // The height of the check is 20% of the container
+$offset--top-of-check       : .24 * $height--checkbox-container; // The check is offset from the top by 24%
+$offset--left-of-check      : .28 * $width--checkbox-container;  // The check is offset from the left by 28%
+$width--stroke              : .12 * $width--checkbox-container;  // The width of the check’s stroke is 12%
+$color--stroke              : black;
+
+//
+// The <label> element is designed to create a checkbox and is rendered *over* the *real* checkbox (<input type="checkbox">).
+//
+// Based on the work of Paul Underwood at https://paulund.co.uk/create-flat-checkboxes
+//
+.form {
+   &__input-container {
+      margin: 20px;
+      position: relative;
+
+      //
+      // When the box is checked, remove all opacity, revealing the full color of the stroke
+      //
+      &--input:checked + label:after {
+         opacity: 1;
+      }
+
+      &--label {
+         position: absolute;
+         top: 0;
+         left: 0;
+         cursor: pointer;
+         width: $width--checkbox-container;
+         height: $height--checkbox-container;
+         background: lighten($color--stroke, 84%);
+
+         //
+         // Draw the check mark to be displayed inside the label
+         //
+         &:after {
+            position: absolute;
+            top: $offset--top-of-check;
+            left: $offset--left-of-check;
+            opacity: 0.2;
+            content: '';
+            width: $width--check;
+            height: $height--check;
+            border: {
+               bottom: $width--stroke solid $color--stroke;
+               left: $width--stroke solid $color--stroke;
+            }
+            transform: rotate(-45deg);
+         }
+
+         //
+         // When hovering over the check mark, set the opacity to 50% of the original
+         //
+         &:hover::after {
+            opacity: 0.5;
+         }
+      }
+   }
+}

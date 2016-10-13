@@ -1,0 +1,31 @@
+.form__input-container {
+  margin: 20px;
+  position: relative;
+}
+.form__input-container--input:checked + label:after {
+  opacity: 1;
+}
+.form__input-container--label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background: #d6d6d6;
+}
+.form__input-container--label:after {
+  position: absolute;
+  top: 5.76px;
+  left: 6.72px;
+  opacity: 0.2;
+  content: '';
+  width: 8.64px;
+  height: 4.8px;
+  border-bottom: 2.88px solid black;
+  border-left: 2.88px solid black;
+  transform: rotate(-45deg);
+}
+.form__input-container--label:hover::after {
+  opacity: 0.5;
+}
